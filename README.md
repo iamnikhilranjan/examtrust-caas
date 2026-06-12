@@ -1,6 +1,6 @@
-# ExamTrust CaaS (Veritas)
+# ExamTrust - Credentialing as a Service (CaaS)
 
-Welcome to **ExamTrust Certificate as a Service (CaaS)** — a decentralized credentialing platform built for modern organizations to issue tamper-proof, on-chain certificates.
+Welcome to **ExamTrust - Credentialing as a Service (CaaS)** — a decentralized credentialing platform built for modern organizations to issue tamper-proof, on-chain certificates.
 
 ## Tech Stack
 

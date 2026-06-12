@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutTemplate, UploadCloud, ScrollText, ShieldCheck } from "lucide-react";
+import { LayoutTemplate, UploadCloud, ScrollText, ShieldCheck, BarChart, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -17,6 +17,8 @@ const items = [
   { title: "Template Builder", url: "/dashboard/templates", icon: LayoutTemplate },
   { title: "Batch Issuance", url: "/dashboard/issue", icon: UploadCloud },
   { title: "Credential Ledger", url: "/dashboard/ledger", icon: ScrollText },
+  { title: "Analytics", url: "/dashboard/analytics", icon: BarChart },
+  { title: "Settings", url: "/dashboard/settings", icon: Settings },
 ];
 
 export function AppSidebar() {

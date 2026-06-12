@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Sparkles, Zap, LogOut } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { useAuth } from "../hooks/use-auth";
+import { OrgProfileDropdown } from "../components/dashboard/OrgProfileDropdown";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,20 +33,7 @@ function Index() {
             <span className="font-display text-lg font-semibold">ExamTrust</span>
           </div>
           {isLoggedIn ? (
-            <div className="flex items-center gap-3">
-              <Link
-                to="/dashboard/templates"
-                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-4 py-2 text-sm font-medium hover:bg-card"
-              >
-                Open Dashboard <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <button
-                onClick={logout}
-                className="inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground"
-              >
-                <LogOut className="h-4 w-4" />
-              </button>
-            </div>
+            <OrgProfileDropdown />
           ) : (
             <Link
               to="/login"

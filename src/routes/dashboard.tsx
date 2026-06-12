@@ -2,6 +2,7 @@ import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/AppSidebar";
+import { OrgProfileDropdown } from "@/components/dashboard/OrgProfileDropdown";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/dashboard")({
@@ -35,7 +36,7 @@ function DashboardLayout() {
                 <span className="hidden text-xs text-muted-foreground sm:inline">
                   Connected to <span className="text-accent">Polygon Amoy</span>
                 </span>
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent" />
+                <OrgProfileDropdown />
               </div>
             </header>
             <main className="flex-1">

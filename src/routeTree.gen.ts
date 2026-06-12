@@ -16,8 +16,10 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardTemplatesRouteImport } from './routes/dashboard.templates'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
 import { Route as DashboardLedgerRouteImport } from './routes/dashboard.ledger'
 import { Route as DashboardIssueRouteImport } from './routes/dashboard.issue'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as CredentialIdRouteImport } from './routes/credential.$id'
 
 const VerifyRoute = VerifyRouteImport.update({
@@ -55,6 +57,11 @@ const DashboardTemplatesRoute = DashboardTemplatesRouteImport.update({
   path: '/templates',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardLedgerRoute = DashboardLedgerRouteImport.update({
   id: '/ledger',
   path: '/ledger',
@@ -63,6 +70,11 @@ const DashboardLedgerRoute = DashboardLedgerRouteImport.update({
 const DashboardIssueRoute = DashboardIssueRouteImport.update({
   id: '/issue',
   path: '/issue',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => DashboardRoute,
 } as any)
 const CredentialIdRoute = CredentialIdRouteImport.update({
@@ -78,8 +90,10 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
   '/credential/$id': typeof CredentialIdRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/issue': typeof DashboardIssueRoute
   '/dashboard/ledger': typeof DashboardLedgerRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/templates': typeof DashboardTemplatesRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -89,8 +103,10 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
   '/credential/$id': typeof CredentialIdRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/issue': typeof DashboardIssueRoute
   '/dashboard/ledger': typeof DashboardLedgerRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/templates': typeof DashboardTemplatesRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -102,8 +118,10 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
   '/credential/$id': typeof CredentialIdRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/issue': typeof DashboardIssueRoute
   '/dashboard/ledger': typeof DashboardLedgerRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/templates': typeof DashboardTemplatesRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -116,8 +134,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/verify'
     | '/credential/$id'
+    | '/dashboard/analytics'
     | '/dashboard/issue'
     | '/dashboard/ledger'
+    | '/dashboard/settings'
     | '/dashboard/templates'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -127,8 +147,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/verify'
     | '/credential/$id'
+    | '/dashboard/analytics'
     | '/dashboard/issue'
     | '/dashboard/ledger'
+    | '/dashboard/settings'
     | '/dashboard/templates'
     | '/dashboard'
   id:
@@ -139,8 +161,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/verify'
     | '/credential/$id'
+    | '/dashboard/analytics'
     | '/dashboard/issue'
     | '/dashboard/ledger'
+    | '/dashboard/settings'
     | '/dashboard/templates'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -205,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTemplatesRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/ledger': {
       id: '/dashboard/ledger'
       path: '/ledger'
@@ -219,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIssueRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
+      path: '/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/credential/$id': {
       id: '/credential/$id'
       path: '/credential/$id'
@@ -230,15 +268,19 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardIssueRoute: typeof DashboardIssueRoute
   DashboardLedgerRoute: typeof DashboardLedgerRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardTemplatesRoute: typeof DashboardTemplatesRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
   DashboardIssueRoute: DashboardIssueRoute,
   DashboardLedgerRoute: DashboardLedgerRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardTemplatesRoute: DashboardTemplatesRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }

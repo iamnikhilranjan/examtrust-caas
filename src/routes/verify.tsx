@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/verify")({
   head: () => ({
     meta: [
-      { title: "Verify a Credential — Veritas" },
+      { title: "Verify a Credential — ExamTrust" },
       {
         name: "description",
         content:
@@ -86,7 +86,7 @@ function mockLookup(
     documentHash ??
     (key.startsWith("0x")
       ? key.slice(2).padEnd(64, "0").slice(0, 64)
-      : Array.from(key + "veritas")
+      : Array.from(key + "examtrust")
           .reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7)
           .toString(16)
           .padEnd(64, "a")
@@ -104,7 +104,7 @@ function mockLookup(
         .padEnd(64, "f")
         .slice(0, 64),
     mintedAt,
-    issuer: "Veritas Academy",
+    issuer: "ExamTrust Academy",
     issuerWallet: "0x7A91…F3B2",
     network: "Polygon Amoy",
     block: 8_421_577,
@@ -194,7 +194,7 @@ function VerifyPage() {
             >
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <span className="font-display text-lg font-semibold">Veritas</span>
+            <span className="font-display text-lg font-semibold">ExamTrust</span>
           </Link>
           <Link
             to="/dashboard/templates"

@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, Zap, LogOut } from "lucide-react";
+import { useAuth } from "../hooks/use-auth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Veritas — Decentralized Credentialing" },
+      { title: "ExamTrust — Decentralized Credentialing" },
       {
         name: "description",
         content: "Issue tamper-proof, on-chain credentials in minutes. Zero code required.",
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { isLoggedIn, logout } = useAuth();
+
   return (
     <div className="dark">
       <div className="min-h-screen bg-background text-foreground">
@@ -26,14 +29,31 @@ function Index() {
             >
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <span className="font-display text-lg font-semibold">Veritas</span>
+            <span className="font-display text-lg font-semibold">ExamTrust</span>
           </div>
-          <Link
-            to="/dashboard/templates"
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-4 py-2 text-sm font-medium hover:bg-card"
-          >
-            Open Dashboard <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          {isLoggedIn ? (
+            <div className="flex items-center gap-3">
+              <Link
+                to="/dashboard/templates"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-4 py-2 text-sm font-medium hover:bg-card"
+              >
+                Open Dashboard <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+              <button
+                onClick={logout}
+                className="inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card/50 px-4 py-2 text-sm font-medium hover:bg-card"
+            >
+              Sign In
+            </Link>
+          )}
         </header>
 
         <main className="mx-auto max-w-5xl px-6 pb-24 pt-16 text-center">
@@ -55,19 +75,31 @@ function Index() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/dashboard/templates"
-              className="inline-flex h-12 items-center gap-2 rounded-md px-6 text-sm font-semibold text-primary-foreground"
-              style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
-            >
-              Start Issuing <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/register"
-              className="inline-flex h-12 items-center rounded-md border border-border bg-card/40 px-6 text-sm font-medium hover:bg-card"
-            >
-              Register Organization
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                to="/dashboard/templates"
+                className="inline-flex h-12 items-center gap-2 rounded-md px-6 text-sm font-semibold text-primary-foreground"
+                style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
+              >
+                Start Issuing <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="inline-flex h-12 items-center gap-2 rounded-md px-6 text-sm font-semibold text-primary-foreground"
+                  style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  className="inline-flex h-12 items-center rounded-md border border-border bg-card/40 px-6 text-sm font-medium hover:bg-card"
+                >
+                  Register Organization
+                </Link>
+              </>
+            )}
             <Link
               to="/verify"
               className="inline-flex h-12 items-center rounded-md border border-border bg-card/40 px-6 text-sm font-medium hover:bg-card"

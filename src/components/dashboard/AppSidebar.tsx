@@ -26,18 +26,18 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-3">
+        <Link to="/" className="flex items-center gap-2 px-2 py-3 hover:opacity-80 transition-opacity">
           <div
             className="flex h-9 w-9 items-center justify-center rounded-lg text-primary-foreground"
             style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
           >
             <ShieldCheck className="h-5 w-5" />
           </div>
-          <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="font-display text-base font-semibold">Veritas</span>
+          <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden text-foreground">
+            <span className="font-display text-base font-semibold">ExamTrust</span>
             <span className="text-xs text-muted-foreground">Org Dashboard</span>
           </div>
-        </div>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Org Dashboard — Veritas" },
+      { title: "Org Dashboard — ExamTrust" },
       { name: "description", content: "Design templates, batch-issue credentials, and audit your ledger." },
     ],
   }),
